@@ -1,0 +1,27 @@
+.container{
+    display: grid;
+    grid-template-areas: 'left center right';
+}
+
+h1{
+    left: 50%;
+    text-align: center;
+    color: red;
+}
+
+.todo-section{
+    grid-area: center;
+}
+
+.todo-Counter{
+    text-align: center;
+}
+
+.newTodos{
+    display: flex ;
+    align-items: center;
+}
+
+.todoDelete{
+    margin-left: 10px;
+}
