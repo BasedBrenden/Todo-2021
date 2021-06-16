@@ -14,7 +14,8 @@ const todoList = () =>{
             title: x,
             description: y,
             /*project:'',
-            checked: false,*/
+            checked: false,
+            test: true*/
         }
         storedTodos.push(todoObj)
         addSingleTodo(todoObj);
