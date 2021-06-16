@@ -13,14 +13,19 @@ const todoList = () =>{
         let todoObj = {
             title: x,
             description: y,
-            /*project:'',
+            /*For future updates, adding option to add todos to select projects
+            a checkbox, dueDate, and priority for each todo object
+            
+            project:'',
             checked: false,
-            test: true*/
+            dueDate: '',
+            priority: ''*/
         }
         storedTodos.push(todoObj)
         addSingleTodo(todoObj);
     }
 
+    //Adds single todo to HTML file, will probably move this to be outside of the factory.
     const addSingleTodo = (x) =>{
         let todoDIV = document.createElement("DIV");
         todoDIV.classList.add("newTodos");
@@ -49,7 +54,7 @@ const todoList = () =>{
         }) 
         todoID++;
     }
-
+    //loops addSingleTodo for each obj in the storedTodos array
     const displayTodos = ()=>{
         todoID = 0;
         for(let i=0; i < storedTodos.length; i++){
