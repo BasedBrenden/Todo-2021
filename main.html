@@ -4,21 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
     <div class="container">
 
-        <div id="projects">
-            
-        </div>
+        
+            <nav class="navbar">
+                <ul class = "navbar-nav">
+                    <li class = "navbar-item">
+                        <a href="">
+                            <span class="material-icons">
+                                work
+                            </span>
+                        </a>
+                    </li>
+                    <li class = "navbar-item">
+                        <a href="">
+                            <span class="material-icons">
+                                work
+                            </span>
+                        </a>
+                    </li>
+                    <li class = "navbar-item">
+                        <a href="">
+                            <span class="material-icons">
+                                work
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        
         
         <div class="todo-section">
             <h1> Here is where I'd put a cool title or header</h1>
                 <form>
-                    <input type="text" placeholder="input todo here!" id="todoInput" value=''>
-                    <input type="text" placeholder="Input todo description" id="todoDesc" value=''>
+                    <input type="text" placeholder="input todo here!" id="todoInput" value='' >
+                    <input type="text" placeholder="Input todo description" id="todoDesc" value='' >
+                    <div class="dropdown-container">
+                    <button type="button" class="dropdownBTN"> Select a Project</button>
+                        <div class="dropdown-list">
+                            <a href="#" class ="project-a" id="1">Project1</a>
+                            <a href="#" class ="project-a" id="2">Project2</a>
+                            <a href="#" class ="project-a" id="3">Project3</a>
+                        </div>
+                    </div>
                     <button type="button" id="submit">Submit!</button>
                 </form>
                 <p class="todo-Counter"> You currentely have:<span></span></p>

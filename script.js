@@ -1,6 +1,8 @@
 const section = document.querySelector('.todo-section');
 const submitBtn = document.querySelector('#submit');
 const todoListi = document.querySelector('#todo-list');
+const projectList = document.querySelector('.dropdownBTN');
+let projectBtns = document.querySelectorAll('.project-a');
 
 
 const todoList = () =>{
@@ -9,15 +11,13 @@ const todoList = () =>{
     let todoID = 0;
     
 
-    const createTodos = (x, y) =>{
+    const createTodos = (x, y, z) =>{
         let todoObj = {
             title: x,
             description: y,
-            /*For future updates, adding option to add todos to select projects
-            a checkbox, dueDate, and priority for each todo object
-            
-            project:'',
+            project: z,
             checked: false,
+            /*
             dueDate: '',
             priority: ''*/
         }
@@ -30,8 +30,23 @@ const todoList = () =>{
         let todoDIV = document.createElement("DIV");
         todoDIV.classList.add("newTodos");
         todoDIV.classList.add("todoCard");
-
         todoListi.appendChild(todoDIV);
+
+        let todoCheck = document.createElement('input');
+        todoCheck.setAttribute('type','checkbox');
+        todoDIV.appendChild(todoCheck);
+        todoCheck.addEventListener('click', ()=>{
+            if(x.checked == true){
+                todoDIV.style.backgroundColor = 'white';
+                todoDIV.style.textdecoration = 'none';
+                x.checked = false;
+            }else{
+            todoDIV.style.backgroundColor = 'slategrey';
+            todoDIV.style.textdecoration = 'line-through';
+            x.checked = true;
+            }
+        })
+
         let todoHTML = document.createElement('p');
         todoHTML.innerHTML = x.title;
         todoDIV.appendChild(todoHTML);
@@ -52,6 +67,7 @@ const todoList = () =>{
             todoListi.innerHTML = '';
             displayTodos();
         }) 
+
         todoID++;
     }
     //loops addSingleTodo for each obj in the storedTodos array
@@ -74,6 +90,25 @@ let todo = todoList();
 submitBtn.addEventListener('click', () =>{
     let todoInput = document.querySelector('#todoInput');
     let todoDescr = document.querySelector('#todoDesc');
+    projectList.innerHTML = 'Select a Project'
     
-    todo.createTodos(todoInput.value, todoDescr.value);
+    todo.createTodos(todoInput.value, todoDescr.value, projectList.innerHTML);
+})
+
+projectList.addEventListener('click', () =>{
+    let dropdownList = document.querySelector('.dropdown-list');
+    if(dropdownList.style.display =='block'){
+        dropdownList.style.display = 'none';
+    }else{
+        dropdownList.style.display = 'block';
+    }
+    
+})
+
+projectBtns.forEach( function(btn){ 
+    btn.addEventListener('click', (e)=>{
+    projectList.innerHTML = e.target.id;
+    let dropdownList = document.querySelector('.dropdown-list');
+    dropdownList.style.display = 'none'
+    })
 })
