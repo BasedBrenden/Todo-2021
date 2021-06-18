@@ -1,9 +1,11 @@
-const section = document.querySelector('.todo-section');
+//currently, needs a way to remember which project the todo list is currently on.
+//Will create a variable that houses the current active project and pass that into the submitBTN argument
 const submitBtn = document.querySelector('#submit');
 const todoListi = document.querySelector('#todo-list');
-const projectList = document.querySelector('.dropdownBTN');
 let projectBtns = document.querySelectorAll('.project-a');
-
+const newProjectBtn = document.querySelector('.new-button');
+const projectSubmitBtn = document.querySelector('#project-submit')
+const newTodoBtn = document.querySelector('#newTodoBtn');
 
 const todoList = () =>{
 
@@ -90,20 +92,12 @@ let todo = todoList();
 submitBtn.addEventListener('click', () =>{
     let todoInput = document.querySelector('#todoInput');
     let todoDescr = document.querySelector('#todoDesc');
-    projectList.innerHTML = 'Select a Project'
     
-    todo.createTodos(todoInput.value, todoDescr.value, projectList.innerHTML);
+    //'aye,lmao is place holder for project argument. Will update accordingly
+    
+    todo.createTodos(todoInput.value, todoDescr.value, 'aye,lmao');
 })
 
-projectList.addEventListener('click', () =>{
-    let dropdownList = document.querySelector('.dropdown-list');
-    if(dropdownList.style.display =='block'){
-        dropdownList.style.display = 'none';
-    }else{
-        dropdownList.style.display = 'block';
-    }
-    
-})
 
 projectBtns.forEach( function(btn){ 
     btn.addEventListener('click', (e)=>{
@@ -111,4 +105,51 @@ projectBtns.forEach( function(btn){
     let dropdownList = document.querySelector('.dropdown-list');
     dropdownList.style.display = 'none'
     })
+})
+
+newProjectBtn.addEventListener('click', ()=>{
+    let form = document.querySelector('.project-form');
+    console.log('yaaay');
+
+    
+        form.style.display = 'inline';
+    
+    console.log('naaay')
+})
+
+
+projectSubmitBtn.addEventListener('click', () =>{
+    let projectName = document.querySelector('#project-Input');
+    let navbar = document.querySelector('.navbar-nav');
+
+    let listItem = document.createElement('li');
+    listItem.classList.add("navbar-item");
+
+    let projectSpan = document.createElement('span');
+    projectSpan.classList.add("material-icons");
+    projectSpan.innerHTML = 'work';
+
+    let anchorElem = document.createElement('a');
+    anchorElem.setAttribute('href','#');
+
+
+    navbar.appendChild(listItem);
+
+    listItem.appendChild(anchorElem);
+    anchorElem.appendChild(projectSpan);
+    
+    let pNewName = document.createElement('p');
+    pNewName.innerHTML = projectName.value;
+    anchorElem.appendChild(pNewName)
+
+    let form = document.querySelector('.project-form');
+    form.style.display = "none"
+
+
+})
+
+
+newTodoBtn.addEventListener('click', ()=>{
+    let todoForm = document.querySelector('.basic-form');
+    todoForm.style.display="inline"
 })

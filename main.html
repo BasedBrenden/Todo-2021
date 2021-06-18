@@ -14,51 +14,60 @@
         
             <nav class="navbar">
                 <ul class = "navbar-nav">
+                    <li class = "navbar-item new-button">
+                        <a href="#" >
+                            <span class="material-icons">
+                                add
+                            </span>
+                             <!-- New Project -->
+                        </a>
+                    </li>
+
                     <li class = "navbar-item">
-                        <a href="">
+                        <a href="#">
                             <span class="material-icons">
                                 work
                             </span>
+                            Hobbies
                         </a>
                     </li>
                     <li class = "navbar-item">
-                        <a href="">
+                        <a href="#">
                             <span class="material-icons">
                                 work
                             </span>
+                            Grocery
                         </a>
                     </li>
                     <li class = "navbar-item">
-                        <a href="">
+                        <a href="#">
                             <span class="material-icons">
                                 work
                             </span>
+                            Errands
                         </a>
                     </li>
+                
                 </ul>
             </nav>
         
-        
-        <div class="todo-section">
-            <h1> Here is where I'd put a cool title or header</h1>
-                <form>
+    <h1> Here is where I'd put a cool title or header</h1>
+        <button type="button" id="newTodoBtn">Create New Todo!</button>
+                <form class="basic-form">
                     <input type="text" placeholder="input todo here!" id="todoInput" value='' >
                     <input type="text" placeholder="Input todo description" id="todoDesc" value='' >
-                    <div class="dropdown-container">
-                    <button type="button" class="dropdownBTN"> Select a Project</button>
-                        <div class="dropdown-list">
-                            <a href="#" class ="project-a" id="1">Project1</a>
-                            <a href="#" class ="project-a" id="2">Project2</a>
-                            <a href="#" class ="project-a" id="3">Project3</a>
-                        </div>
-                    </div>
                     <button type="button" id="submit">Submit!</button>
                 </form>
-                <p class="todo-Counter"> You currentely have:<span></span></p>
+
+                <form class="project-form">
+                    <input type="text" placeholder="input project name here!" id="project-Input" value='' >
+                    <button type="button" id="project-submit">Submit!</button>
+                </form>
+                
             <div id="todo-list">
 
             </div>
-        </div>
+        
 
     </div>
 
