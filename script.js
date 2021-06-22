@@ -6,11 +6,15 @@ let projectBtns = document.querySelectorAll('.project-a');
 const newProjectBtn = document.querySelector('.new-button');
 const projectSubmitBtn = document.querySelector('#project-submit')
 const newTodoBtn = document.querySelector('#newTodoBtn');
+const projectName = document.querySelector('#project-Input');
+let projectSelect = document.querySelectorAll('a');
+
+let selectedProject = 0;
 
 const todoList = () =>{
 
     let storedTodos = [];
-    let todoID = 0;
+    
     
 
     const createTodos = (x, y, z) =>{
@@ -60,42 +64,48 @@ const todoList = () =>{
 
         let deleteBTN = document.createElement('button');
         deleteBTN.innerHTML = "X";
-        deleteBTN.setAttribute('id', todoID);
+        deleteBTN.setAttribute('id', storedTodos.indexOf(x));
         deleteBTN.classList.add("newTodos");
         deleteBTN.classList.add("todoDelete");
         todoDIV.appendChild(deleteBTN);
         deleteBTN.addEventListener('click', (e) =>{
             storedTodos.splice(e.target.id,1);
+            
             todoListi.innerHTML = '';
-            displayTodos();
+            displayTodos(selectedProject);
         }) 
 
-        todoID++;
+       
     }
     //loops addSingleTodo for each obj in the storedTodos array
-    const displayTodos = ()=>{
-        todoID = 0;
+    const displayTodos = (currentProject)=>{
+        
         for(let i=0; i < storedTodos.length; i++){
-            addSingleTodo(storedTodos[i])
+            if(storedTodos[i].project == currentProject){
+                addSingleTodo(storedTodos[i])
+            }
         }
         
     }
 
 
-    return{ storedTodos, createTodos};
+    return{ storedTodos, createTodos, displayTodos};
 }
 
 let todo = todoList();
 
-
+let todoProject = 0;
 
 submitBtn.addEventListener('click', () =>{
     let todoInput = document.querySelector('#todoInput');
     let todoDescr = document.querySelector('#todoDesc');
     
     //'aye,lmao is place holder for project argument. Will update accordingly
+    let todoForm = document.querySelector('.basic-form');
+    todoForm.style.display="none"
     
-    todo.createTodos(todoInput.value, todoDescr.value, 'aye,lmao');
+    todo.createTodos(todoInput.value, todoDescr.value, selectedProject);
+
 })
 
 
@@ -119,11 +129,19 @@ newProjectBtn.addEventListener('click', ()=>{
 
 
 projectSubmitBtn.addEventListener('click', () =>{
-    let projectName = document.querySelector('#project-Input');
+    todoProject++;
+    createNewProject(projectName.value);
+
+})
+
+function createNewProject(name){
     let navbar = document.querySelector('.navbar-nav');
+
 
     let listItem = document.createElement('li');
     listItem.classList.add("navbar-item");
+    listItem.classList.add("project");
+    listItem.setAttribute('id',todoProject);
 
     let projectSpan = document.createElement('span');
     projectSpan.classList.add("material-icons");
@@ -139,17 +157,24 @@ projectSubmitBtn.addEventListener('click', () =>{
     anchorElem.appendChild(projectSpan);
     
     let pNewName = document.createElement('p');
-    pNewName.innerHTML = projectName.value;
+    pNewName.innerHTML = name;
     anchorElem.appendChild(pNewName)
 
     let form = document.querySelector('.project-form');
     form.style.display = "none"
+    listItem.addEventListener('click', ()=>{
+        selectedProject = listItem.id;
+        todoListi.innerHTML = '';
+        todo.displayTodos(selectedProject);
+    })
 
-
-})
+}
 
 
 newTodoBtn.addEventListener('click', ()=>{
     let todoForm = document.querySelector('.basic-form');
     todoForm.style.display="inline"
 })
+
+
+window.onload = createNewProject('Default');
